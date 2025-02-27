@@ -4,10 +4,10 @@ pipeline {
     environment {
         SSH_KEY = "/home/keyokeyok/RSAPair-task2.pem"
         EC2_USER = "ubuntu"
-        EC2_HOST = "54.226.232.93"
+        EC2_HOST = "54.164.50.125"
         NGINX_IMAGE = "odamisheker/images:nginx_task16"
         APACHE_IMAGE = "odamisheker/images:apache_task16"
-        PASSWORD = "3"
+        PASSWORD = credentials['']
     }
 
     stages {
@@ -15,7 +15,6 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    echo ${PASSWORD}
                     cd /home/keyokeyok/internship/task12 "
                         sudo docker build -t ${NGINX_IMAGE} . &&
                         sudo docker pull ${NGINX_IMAGE}
