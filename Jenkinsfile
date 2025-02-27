@@ -4,7 +4,7 @@ pipeline {
     environment {
         EC2_USER = "ubuntu"
         EC2_HOST = "54.226.232.93"
-        SSH_KEY = "~/RSAPair-task2.pem"  // Path to your SSH key
+        SSH_KEY = "/home/keyokeyok/RSAPair-task2.pem"  // Path to your SSH key
     }
 
     stages {
@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    ssh -i $SSH_KEY $EC2_USER@$EC2_HOST "docker pull nginx:latest"
+                    ssh -i $SSH_KEY $EC2_USER@$EC2_HOST "docker pull odamisheker/images:nginx_task16"
                     '''
                 }
             }
