@@ -38,10 +38,10 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST} "
-                        sudo docker rm -f $(sudo docker ps -a -q) && sudo docker rmi -f $(sudo docker images -aq)
-                    
-                    "    
+                    ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST} '
+                        sudo docker ps -a -q | xargs -r sudo docker rm -f
+                        sudo docker images -aq | xargs -r sudo docker rmi -f
+                    '
                     '''
                 }
             }
