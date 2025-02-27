@@ -14,15 +14,16 @@ pipeline {
                 script {
                     def remoteCommand = "sudo docker pull ${DOCKER_IMAGE}"
                     sh "ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST} '${remoteCommand}'"
+                    sh "sudo docker run -d -p 443:443 --name nginx ${DOCKER_IMAGE}"
                 }
             }
         }
-        stage('Run Nginx container on EC2') {
-            steps {
-                script {
-                    sh "sudo docker run -d -p 443:443 --name nginx odamisheker/images:nginx_task16"
-                }
-            }
-        }
+        // stage('Run Nginx container on EC2') {
+        //     steps {
+        //         script {
+        //             sh "sudo docker run -d -p 443:443 --name nginx odamisheker/images:nginx_task16"
+        //         }
+        //     }
+        // }
     }
 }
