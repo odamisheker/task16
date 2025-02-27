@@ -17,5 +17,12 @@ pipeline {
                 }
             }
         }
+        stage('Run Nginx container on EC2') {
+            steps {
+                script {
+                    sh "sudo docker run -d -p 443:443 --name nginx odamisheker/images:nginx_task16"
+                }
+            }
+        }
     }
 }
