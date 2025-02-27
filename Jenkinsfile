@@ -14,11 +14,11 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    'ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST}'
-                        'sudo docker pull ${NGINX_IMAGE}'
-                        'sudo docker run -d -p 443:443 --name nginx ${NGINX_IMAGE}'
-                        'sudo docker pull ${APACHE_IMAGE}'
-                        'sudo docker run -d -p 8080:8080 --name apache ${APACHE_IMAGE}'
+                    ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST} '\
+                        sudo docker pull ${NGINX_IMAGE} && \ 
+                        sudo docker run -d -p 443:443 --name nginx ${NGINX_IMAGE} && \
+                        sudo docker pull ${APACHE_IMAGE} && \
+                        sudo docker run -d -p 8080:8080 --name apache ${APACHE_IMAGE} '
                     '''
                 }
             }
