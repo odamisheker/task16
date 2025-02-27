@@ -6,9 +6,7 @@ pipeline {
         EC2_USER = "ubuntu"
         EC2_HOST = "54.164.50.125"
         NGINX_IMAGE = "odamisheker/images:nginx_task16"
-        APACHE_IMAGE = "odamisheker/images:apache_task16"
-        // PASSWORD = credentials['']
-    }
+        APACHE_IMAGE = "odamisheker/images:apache_task16"54.    }
 
     stages {
         stage('Build Docker Images') {
