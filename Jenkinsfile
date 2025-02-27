@@ -18,7 +18,7 @@ pipeline {
                         sudo docker pull ${NGINX_IMAGE} && \ 
                         sudo docker run -d -p 443:443 --name nginx ${NGINX_IMAGE} && \
                         sudo docker pull ${APACHE_IMAGE} && \
-                        sudo docker run -d -p 8080:8080 --name apache ${APACHE_IMAGE} '
+                        sudo docker run -d -p 8080:8080 --name apache ${APACHE_IMAGE}'
                     '''
                 }
             }
