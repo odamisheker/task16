@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  apache:
+    container_name: apache
+    image: odamisheker/images:apache17
+    ports:
+      - "443:443"
+    networks:
+      - br0
+  nginx:
+    container_name: nginx
+    image: odamisheker/images:nginx102
+    ports:
+      - "444:443"
+    networks:
+      - br0
+    depends_on:
+      - apache
+
+networks:
+  br0:
+    driver: bridge
