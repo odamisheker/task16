@@ -13,12 +13,12 @@ pipeline {
         stage('Pull Docker Image on EC2') {
             steps {
                 script {
-                    def remoteCommand = "sudo docker pull ${NGINX_IMAGE}"
                     sh '''
-                        ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST} '${remoteCommand}'
+                    ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST}
 
+                        sudo docker pull ${NGINX_IMAGE}
                         sudo docker run -d -p 443:443 --name nginx ${NGINX_IMAGE}
-                        sudo docker pull ${APACHE_IMAGES}
+                        sudo docker pull ${APACHE_IMAGE}
                         sudo docker run -d -p 8080:8080 --name apache ${APACHE_IMAGE}
                     '''
                 }
