@@ -7,7 +7,7 @@ pipeline {
         EC2_HOST = "54.226.232.93"
         NGINX_IMAGE = "odamisheker/images:nginx_task16"
         APACHE_IMAGE = "odamisheker/images:apache_task16"
-        
+        PASSWORD = "3"
     }
 
     stages {
@@ -15,6 +15,7 @@ pipeline {
             steps {
                 script {
                     sh '''
+                    echo ${PASSWORD}
                     cd /home/keyokeyok/internship/task12 "
                         sudo docker build -t ${NGINX_IMAGE} . &&
                         sudo docker pull ${NGINX_IMAGE}
