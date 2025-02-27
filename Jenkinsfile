@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    ssh -i $SSH_KEY $EC2_USER@$EC2_HOST -t "sudo docker pull odamisheker/images:nginx_task16; bash -l"
+                    ssh -i $SSH_KEY $EC2_USER@$EC2_HOST "sudo docker pull odamisheker/images:nginx_task16; bash -l"
                     '''
                 }
             }
