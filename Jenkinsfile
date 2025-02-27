@@ -11,18 +11,25 @@ pipeline {
     }
 
     stages {
-        stage('Build and pull nginx image') {
+        stage('Build Docker Images') {
             steps {
                 script {
                     sh '''
-                    cd /home/keyokeyok/internship/task12 "
-                        sudo docker build -t ${NGINX_IMAGE} . &&
-                        sudo docker pull ${NGINX_IMAGE}
-                    "
-                    cd /home/keyokeyok/internship/task12/apache "
-                        sudo docker build -t ${APACHE_IMAGE} . &&
-                        sudo docker pull ${APACHE)IMAGE}
-                    "
+                    cd /home/keyokeyok/internship/task12 &&
+                        sudo docker build -t ${NGINX_IMAGE} .
+                    
+                    cd /home/keyokeyok/internship/task12/apache &&
+                        sudo docker build -t ${APACHE_IMAGE} .
+                    '''
+                }
+            }
+        }
+        stage('Push Docker Images to DockerHub') {
+            steps {
+                script {
+                    sh '''
+                    sudo docker push ${NGINX_IMAGE}
+                    sudo docker push ${APACHE_IMAGE}
                     '''
                 }
             }
