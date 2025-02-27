@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     def remoteCommand = "sudo docker pull ${DOCKER_IMAGE}"
-                    sh "ssh -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST} '${remoteCommand}'"
+                    sh "ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${EC2_USER}@${EC2_HOST} '${remoteCommand}'"
                 }
             }
         }
