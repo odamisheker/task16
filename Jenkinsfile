@@ -4,7 +4,7 @@ pipeline {
     environment {
         SSH_KEY = "/home/keyokeyok/RSAPair-task2.pem"
         EC2_USER = "ubuntu"
-        EC2_HOST = "54.164.50.125"
+        EC2_HOST = "34.234.73.92"
         NGINX_IMAGE = "odamisheker/images:nginx_task16"
         APACHE_IMAGE = "odamisheker/images:apache_task16"
     }
