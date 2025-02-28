@@ -7,6 +7,7 @@ pipeline {
         EC2_HOST = "34.234.73.92"
         NGINX_IMAGE = "odamisheker/images:nginx_task16"
         APACHE_IMAGE = "odamisheker/images:apache_task16"
+        HOME_DIR = "/home/keyokeyok/internship/task12"
     }
 
     stages {
@@ -14,10 +15,10 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    cd /home/keyokeyok/internship/task12 &&
+                    cd ${HOME_DIR} &&
                         sudo docker build -t ${NGINX_IMAGE} .
                     
-                    cd /home/keyokeyok/internship/task12/apache &&
+                    cd ${HOME_DIR}/apache &&
                         sudo docker build -t ${APACHE_IMAGE} .
                     '''
                 }
